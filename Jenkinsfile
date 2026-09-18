@@ -5,10 +5,6 @@ pipeline {
         pollSCM('H/5 * * * *')
     }
 
-    tools {
-        sonarQube 'SonarScanner'
-    }
-
     stages {
 
         stage('Build') {
@@ -32,8 +28,12 @@ pipeline {
             steps {
                 echo 'Running SonarCloud code quality analysis'
 
-                withSonarQubeEnv('SonarCloud') {
-                    bat 'sonar-scanner'
+                script {
+                    def scannerHome = tool 'SonarScanner'
+
+                    withSonarQubeEnv('SonarCloud') {
+                        bat "\"${scannerHome}\\bin\\sonar-scanner.bat\""
+                    }
                 }
             }
         }
