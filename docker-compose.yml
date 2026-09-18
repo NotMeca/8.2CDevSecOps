@@ -25,3 +25,14 @@ services:
       MYSQL_DATABASE: acme
     ports:
       - "3306:3306"
+
+    uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    ports:
+      - "3002:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+
+    volumes:
+      uptime-kuma-data:
