@@ -44,5 +44,16 @@ pipeline {
                 bat 'npm audit || exit /b 0'
             }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application to staging environment with Docker Compose'
+        
+                bat 'docker compose down'
+                bat 'docker compose up --build -d'
+        
+                echo 'Checking running containers'
+                bat 'docker compose ps'
+           }
+        }
     }
 }
