@@ -48,11 +48,11 @@ pipeline {
             steps {
                 echo 'Deploying application to staging environment with Docker Compose'
         
-                bat 'docker compose down'
-                bat 'docker compose up --build -d'
+                bat '"C:\\Users\\xx201\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" compose down'
+                bat '"C:\\Users\\xx201\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" compose up --build -d'
         
                 echo 'Checking running containers'
-                bat 'docker compose ps'
+                bat '"C:\\Users\\xx201\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" compose ps'
            }
         }
     }
