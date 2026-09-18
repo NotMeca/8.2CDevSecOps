@@ -55,5 +55,17 @@ pipeline {
                 bat '"C:\\Users\\xx201\\.docker\\cli-plugins\\docker-compose.exe" ps'
            }
         }
+
+        stage('Release') {
+            steps {
+                echo 'Creating versioned release image'
+        
+                bat '"C:\\Users\\xx201\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" tag sit223-devsecops-goof:latest sit223-goof-release:1.0.%BUILD_NUMBER%'
+        
+                echo 'Listing release images'
+        
+                bat '"C:\\Users\\xx201\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" images sit223-goof-release'
+            }
+        }
     }
 }
