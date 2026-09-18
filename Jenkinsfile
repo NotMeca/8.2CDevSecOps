@@ -48,7 +48,7 @@ pipeline {
             steps {
                 echo 'Deploying application to staging environment with Docker Compose'
         
-                bat '"C:\\Users\\xx201\\.docker\\cli-plugins\\docker-compose.exe" down'
+                bat '"C:\\Users\\xx201\\.docker\\cli-plugins\\docker-compose.exe" down --remove-orphans'
                 bat '"C:\\Users\\xx201\\.docker\\cli-plugins\\docker-compose.exe" up --build -d'
         
                 echo 'Checking running containers'
