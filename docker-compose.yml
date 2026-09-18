@@ -1,4 +1,5 @@
 version: "2"
+
 services:
   goof:
     build: .
@@ -12,12 +13,14 @@ services:
       - goof-mongo
     depends_on:
       - goof-mongo
+
   goof-mongo:
     container_name: goof-mongo
     image: mongo:3
     ports:
       - "27017:27017"
-  good-mysql:
+
+  goof-mysql:
     container_name: goof-mysql
     image: mysql:5
     environment:
@@ -26,7 +29,7 @@ services:
     ports:
       - "3306:3306"
 
-    uptime-kuma:
+  uptime-kuma:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
     ports:
@@ -34,5 +37,5 @@ services:
     volumes:
       - uptime-kuma-data:/app/data
 
-    volumes:
-      uptime-kuma-data:
+volumes:
+  uptime-kuma-data:
