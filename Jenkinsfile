@@ -5,6 +5,10 @@ pipeline {
         pollSCM('H/5 * * * *')
     }
 
+    tools {
+        sonarQube 'SonarScanner'
+    }
+
     stages {
 
         stage('Build') {
@@ -21,6 +25,16 @@ pipeline {
             steps {
                 echo 'Running automated unit tests'
                 bat 'npm run unit-test'
+            }
+        }
+
+        stage('Code Quality') {
+            steps {
+                echo 'Running SonarCloud code quality analysis'
+
+                withSonarQubeEnv('SonarCloud') {
+                    bat 'sonar-scanner'
+                }
             }
         }
     }
