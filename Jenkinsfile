@@ -67,5 +67,13 @@ pipeline {
                 bat '"C:\\Users\\xx201\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" images sit223-goof-release'
             }
         }
+
+        stage('Monitoring') {
+            steps {
+                echo 'Checking application availability'
+        
+                bat 'powershell -Command "try { $response = Invoke-WebRequest -Uri http://localhost:3001 -UseBasicParsing; Write-Host \\"Application status: $($response.StatusCode)\\"; if ($response.StatusCode -ne 200) { exit 1 } } catch { Write-Host \\"Application is unavailable\\"; exit 1 }"'
+            }
+        }
     }
 }
