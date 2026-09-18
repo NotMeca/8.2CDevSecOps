@@ -39,10 +39,10 @@ pipeline {
         }
 
         stage('Security') {
-    steps {
-        echo 'Running Snyk security scan'
-
-        bat 'npx snyk test || exit /b 0'
+            steps {
+                echo 'Running Snyk security scan'
+                bat 'npx snyk test || exit /b 0'
+            }
+        }
     }
 }
-
