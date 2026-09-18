@@ -40,8 +40,8 @@ pipeline {
 
         stage('Security') {
             steps {
-                echo 'Running Snyk security scan'
-                bat 'npx snyk test || exit /b 0'
+                echo 'Running dependency security scan with npm audit'
+                bat 'npm audit || exit /b 0'
             }
         }
     }
